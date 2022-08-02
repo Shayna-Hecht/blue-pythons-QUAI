@@ -6,9 +6,13 @@
 """
     Bonus points if you want to have internship at AI Camp
     1. How can we save what user built? And if we can save them, like allow them to publish, can we load the saved results back on the home page? 
+    cookies
     2. Can you add a button for each generated item at the frontend to just allow that item to be added to the story that the user is building? 
+    yes
     3. What other features you'd like to develop to help AI write better with a user? 
+    use github copilot
     4. How to speed up the model run? Quantize the model? Using a GPU to run the model? 
+    use a gpu + download more ram
 """
 
 # import basics
@@ -16,9 +20,46 @@ import os
 
 # import stuff for our web server
 from flask import Flask, request, redirect, url_for, render_template, session
-from utils import get_base_url
+#from utils import get_base_url
 # import stuff for our models
 from aitextgen import aitextgen
+
+import json
+import os
+
+def get_base_url(port:int) -> str:
+    '''
+    Returns the base URL to the webserver if available.
+    
+    i.e. if the webserver is running on coding.ai-camp.org port 12345, then the base url is '/<your project id>/port/12345/'
+    
+    Inputs: port (int) - the port number of the webserver
+    Outputs: base_url (str) - the base url to the webserver
+    '''
+    
+    try:
+        info = json.load(open(os.path.join(os.environ['HOME'], '.smc', 'info.json'), 'r'))
+        project_id = info['project_id']
+        base_url = f'/{project_id}/port/{port}/'
+    except Exception as e:
+        print(f'Server is probably running in production, so a base url does not apply: \n{e}')
+        base_url = '/'
+    return base_url
+    
+#function to add correct and or comma
+def and_syntax(alist):
+    if len(alist) == 1:
+        alist = "".join(alist)
+        return alist
+    elif len(alist) == 2:
+        alist = " and ".join(alist)
+        return alist
+    elif len(alist) > 2:
+        alist[-1] = "and " + alist[-1]
+        alist = ", ".join(alist)
+        return alist
+    else:
+        return
 
 # load up a model from memory. Note you may not need all of these options.
 # ai = aitextgen(model_folder="model/",
@@ -92,7 +133,7 @@ def generate_text():
 
 if __name__ == '__main__':
     # IMPORTANT: change url to the site where you are editing this file.
-    website_url = 'coding.ai-camp.dev'
+    website_url = 'cocalc9.ai-camp.dev'
 
     print(f'Try to open\n\n    https://{website_url}' + base_url + '\n\n')
     app.run(host='0.0.0.0', port=port, debug=True)
