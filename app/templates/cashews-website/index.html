@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>QUAI</title>
+        <link rel="icon" href="static/img/data-icon.png" type="image/icon type">
+        <!-- Favicon--><div style='text-align:justify'></div>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)
+        <link href="css/styles.css" rel="stylesheet" /> -->
+        <!-- JQUERY -->
+        <script class="u-script" type="text/javascript" src="{{ url_for('static', filename='jquery.js') }}" defer=""></script>
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ url_for('static',filename='/css/styles.css') }}" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <!-- ^ CHANGE THE NAVIGATION BAR COLOR -->
+                <div class="container px-5">
+                    <a class="navbar-brand" href="{{url_for('home')}}">QUAI - The Rephraser</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('home')}}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('about')}}">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('blog_home')}}">Blog</a></li>
+                          <li class="nav-item"><a class="nav-link" href="{{url_for('portfolio_overview')}}">Portfolio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('faq')}}">FAQ</a></li>
+                            <li class="nav-item dropdown">
+                                </ul>
+                  </div>
+              </div>
+          </nav>
+            <!-- Header-->
+            <header class="bg-blueberry py-5">
+                <div class="container px-5">
+                    <div class="row gx-5 align-items-center justify-content-center">
+                        <div class="col-lg-8 col-xl-7 col-xxl-6">
+                            <div class="my-5 text-center text-xl-start">
+                                <h1 class="display-5 fw-bolder text-white mb-2"><button class="rounded-3" style="background-color: #4f86f7; border-color: #ffffff; border-width: 1px; color:white" onclick="typeWriter()">QUAI</button></h1>
+<p id="demo" class="lead fw-normal text-white mb-4"></p>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                                    <a class="btn btn-primary btn-lg px-4 me-sm-3" href="#Trymodel">Try Model</a>
+                                    <a class="btn btn-outline-light btn-lg px-4" href="#features">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-xxl-6 d-none d-xl-block text-center"><img class="img-fluid rounded-3 my-5" src="{{url_for('static', filename='/img/quai-logo.png')}}" alt="..." /></div>
+                    </div>
+                </div>
+            </header>
+            <br>
+            <br>
+            <!--Try the model Section-->
+            <section class="content-section bg-white text-center" id="Trymodel" style='background-image:url(http://newhorizon.popularbookdepot.com/wp-content/uploads/2019/11/Blue-abstract-background-curve_1920x1080.jpg);background-repeat:no-repeat;background-size:cover;'>
+            <div class="container px-4 px-lg-5 text-center">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-lg-5" style="text-align:center; color:white;">
+                            <h4 style="text-align: center; color: white;">What question would you like to rephrase?</h4>
+                            <br>
+                            <form action="{{url_for('generate_text')}}" method="POST" source="custom" name="form-1" >
+                              <div class="form-group">
+                                <textarea class="form-control-lg" rows="4" cols="50" placeholder="Write your prompt here..." required="" id="text_gen_input" name="prompt"></textarea>
+                              </div>
+                              <div class="form-group">
+                                <button type="submit" class="btn round-3" id="text_gen_button" style="background-color: #4f86f7; border: none; color: white">Generate</button>
+                              </div>
+                            </form>
+                            <br>
+                        </div>
+                        <div class="col-lg-5">
+                       <!--   <h2 class="text-black">Results</h2> -->
+                          <ul id="generated_ul" style="color:white;">
+                          <h4>
+                          {{ query }}
+                            <br>
+                            <br>
+                          </h4>
+                          <h3>
+                            <it>{{generated}}</it>
+                          </h3>
+                        <!-- generated items will be here. -->
+                        </ul>
+                        </div>
+              </div>
+             </div>
+            </section>
+            <!-- Features section-->
+            <section class="py-5" id="features">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 mb-5 mb-lg-0"><h2 class="fw-bolder mb-0">About QUAI</h2></div>
+                        <div class="col-lg-8">
+                            <div class="row gx-5 row-cols-1 row-cols-md-2">
+                                <div class="col mb-5 h-100">
+                                    <div class="feature bg-primary .bg-primary.bg-gradient bg-blueberry text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                                    <h2 class="h5">Introduction</h2>
+                                    <p class="mb-0">QUAI is a combination of 'QU' standing for Question, and 'AI' standing for Artifcial Intelligence. It is read as 'Quae,' a word in latin meaning 'What,' which leads to what our project is all about.</p>
+                                </div>
+                                <div class="col mb-5 h-100">
+                                    <div class="feature bg-primary bg-gradient  bg-blueberry text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                                    <h2 class="h5">Main Function</h2>
+                                    <p class="mb-0">QUAI inputs a question and rephrases it for the user. For example, if 'What is the biggest country in the world?' is inputted, it might output 'Which nation is the largest nation in the world?'</p>
+                                </div>
+                                <div class="col mb-5 mb-md-0 h-100">
+                                    <div class="feature bg-primary bg-gradient  bg-blueberry text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                                    <h2 class="h5">Use Cases &amp; Expansions</h2>
+                                    <p class="mb-0">QUAI is mostly used for academic purposes including studying, testing. For example, students may prepare for the exam by solving rephrased questions to understand the material better and test their knowledge.</p>
+                                </div>
+                                <div class="col h-100">
+                                    <div class="feature bg-primary bg-gradient  bg-blueberry text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                                    <h2 class="h5">About the Dataset</h2>
+                                    <p class="mb-0">The dataset was provided by Quora through a website called Kaggle. We collected the questions that had a similar meaning, and trained our model until it was able to generate a rephrased question on its own. The dataset contained 149263 lines of questions after processing. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Blue Pythons - AI Camp 2022</div></div>
+          <div class="col-auto">
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+      <script>
+      var i = 0;
+      var txt = 'A question rephraser.';
+      var speed = 40;
+
+      function typeWriter() {
+        if (i < txt.length) {
+          document.getElementById("demo").innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        }
+      }
+      </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+        </script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

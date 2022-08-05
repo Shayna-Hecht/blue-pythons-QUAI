@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>QUAI</title>
+        <!-- Favicon-->
+        <link rel="icon" type="static/img/data-icon.png" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ url_for('static',filename='/css/styles.css') }}" rel="stylesheet" />
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+              <!-- ^ CHANGE THE NAVIGATION BAR COLOR -->
+                <div class="container px-5">
+                    <a class="navbar-brand" href="{{url_for('home')}}">QUAI - The Rephraser</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('home')}}">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('about')}}">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('blog_home')}}">Blog</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('portfolio_overview')}}">Portfolio</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{url_for('faq')}}">FAQ</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- Page Content-->
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="text-center mb-5">
+                        <h1 class="fw-bolder">Our Work</h1>
+                        <p class="lead fw-normal text-muted mb-0">Presentations</p>
+                    </div>
+                    <div class="row gx-5">
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-5">
+                                <img class="img-fluid mb-4 px-4" src="https://cocalc23.ai-camp.dev/58cdb4da-a3f9-4106-9b1a-c474ee15860b/raw/blue-pythons-QUAI/app/static/img/slideshow1 quai screenshot.png" alt="..." width="525" height="375"/>
+                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="https://docs.google.com/presentation/d/1VVERibKaLPSsmDkfxGzIHLEp6mJlcHP19vidweuF7qg/edit?pli=1#slide=id.p">Product Specifications</a>
+                            </div>
+                      </div>
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-5">
+                               <img class="img-fluid mb-4 px-4" src="{{ url_for('static',filename='img/main_pic.png') }}" alt="..." width="525" height="375"/>
+                                <a class="h3 fw-bolder text-decoration-none link-dark stretched-link" href="https://docs.google.com/presentation/d/1w1LLQWsATSvZqa1M9RbuRV9k8rR0mYuUtCOmwXUYiSA/edit#slide=id.g4dfce81f19_0_45">QUAI Product Presentation</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-5 mb-lg-0">
+            <section class="py-5 bg-light">
+                <div class="container px-5 my-5">
+                    <h2 class="display-4 fw-bolder mb-4">Try out our Model!</h2>
+                    <a class="btn btn-lg btn-primary" href="{{url_for('home')}}">Test QUAI</a>
+                </div>
+              <section/>
+                </div>
+        </main>
+        <!-- Footer-->
+        <footer class="bg-dark py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                    <div class="col-auto"><div class="small m-0 text-white">Copyright &copy; Blue Pythons - AI Camp 2022</div></div>
+                    <div class="col-auto">
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

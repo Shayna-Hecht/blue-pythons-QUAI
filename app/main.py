@@ -46,6 +46,7 @@ def get_base_url(port:int) -> str:
         base_url = '/'
     return base_url
     
+    
 #function to add correct and or comma
 def and_syntax(alist):
     if len(alist) == 1:
@@ -65,7 +66,7 @@ def and_syntax(alist):
 # ai = aitextgen(model_folder="model/",
 #                tokenizer_file="model/aitextgen.tokenizer.json", to_gpu=False)
 
-ai = aitextgen(model="distilgpt2", to_gpu=False)
+ai = aitextgen(model_folder="model/", to_gpu=False)
 
 # setup the webserver
 # port may need to be changed if there are multiple flask servers running on same server
@@ -86,8 +87,39 @@ app.secret_key = os.urandom(64)
 
 @app.route(f'{base_url}')
 def home():
-    return render_template('writer_home.html', generated=None)
+    return render_template('/cashews-website/index.html', generated=" ")
 
+@app.route(f'{base_url}/about/')
+def about():
+    return render_template('/cashews-website/about.html', generated=None)
+
+@app.route(f'{base_url}/faq/')
+def faq():
+    return render_template('/cashews-website/faq.html', generated=None)
+
+@app.route(f'{base_url}/blog-home/')
+def blog_home():
+    return render_template('/cashews-website/blog-home.html', generated=None)
+
+@app.route(f'{base_url}/blog-post/')
+def blog_post():
+    return render_template('/cashews-website/blog-post.html', generated=None)
+
+@app.route(f'{base_url}/pricing/')
+def pricing():
+    return render_template('/cashews-website/pricing.html', generated=None)
+
+@app.route(f'{base_url}/contact/')
+def contact():
+    return render_template('/cashews-website/contact.html', generated=None)
+
+@app.route(f'{base_url}/portfolio-overview/')
+def portfolio_overview():
+    return render_template('/cashews-website/portfolio-overview.html', generated=None)
+
+@app.route(f'{base_url}/portfolio-item/')
+def portfolio_item():
+    return render_template('/cashews-website/portfolio-item.html', generated=None)
 
 @app.route(f'{base_url}', methods=['POST'])
 def home_post():
@@ -98,9 +130,15 @@ def home_post():
 def results():
     if 'data' in session:
         data = session['data']
-        return render_template('Write-your-story-with-AI.html', generated=data)
+        splitted = data.split("<!@#$>")
+        query, generated = splitted[0], splitted[1]
+        if "?" in generated:
+            generated = generated.split("?")[0] + "?"
+        print(data)
+        print(generated)
+        return render_template('/cashews-website/index.html', query = query, generated=generated)
     else:
-        return render_template('Write-your-story-with-AI.html', generated=None)
+        return render_template('/cashews-website/index.html', query = " ", generated=" ")
 
 
 @app.route(f'{base_url}/generate_text/', methods=["POST"])
@@ -113,9 +151,9 @@ def generate_text():
     if prompt is not None:
         generated = ai.generate(
             n=1,
-            batch_size=3,
-            prompt=str(prompt),
-            max_length=300,
+            batch_size=1,
+            prompt=str(prompt) + " <!@#$> ",
+            max_length=30,
             temperature=0.9,
             return_as_list=True
         )
@@ -124,16 +162,10 @@ def generate_text():
     session['data'] = generated[0]
     return redirect(url_for('results'))
 
-# define additional routes here
-# for example:
-# @app.route(f'{base_url}/team_members')
-# def team_members():
-#     return render_template('team_members.html') # would need to actually make this page
-
 
 if __name__ == '__main__':
     # IMPORTANT: change url to the site where you are editing this file.
-    website_url = 'cocalc9.ai-camp.dev'
+    website_url = 'cocalc23.ai-camp.dev'
 
     print(f'Try to open\n\n    https://{website_url}' + base_url + '\n\n')
     app.run(host='0.0.0.0', port=port, debug=True)
