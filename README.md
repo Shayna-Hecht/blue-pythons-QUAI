@@ -62,7 +62,9 @@ cd blue-pythons-QUAI/app
 pip install -r requirements.txt
 ```
 
-With dependencies installed, you can run the website with the deployed model. Make sure that `pytorch_model.bin` and `config.json` are in the `app/models` folder. No pretrained models are currently available, but you can get those two files by training the `quai-training.ipynb` notebook on the `quai-data` dataset, both in the `training` folder. 
+With dependencies installed, you can run the website with the deployed model. Make sure that `pytorch_model.bin` and `config.json` are in the `app/models` folder. No pretrained models are currently available, but you can get those two files by training the `quai-training.ipynb` notebook in the `training` folder on the `processed-quora.txt` dataset. The results above were obtained by training a GPT-2 model on 10,000 question pairs. We suggest using the entire dataset and perhaps upgrading to a pretrained Seq2Seq model or GPT-3 for better performance.
+
+After all files are uploaded, run the following line, making sure you are in the `app` folder.
 
 ```
 python -m main
