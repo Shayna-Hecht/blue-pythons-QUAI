@@ -1,6 +1,6 @@
 <div align="center">  
 
-# <img src="app/static/img/quai-logo.png"   width="64px"  height="58px"  style="object-fit:cover"/> <br> QUAI
+# <img src="app/static/img/quai-logo.png"   width="128px"  height="114px"  style="object-fit:cover"/> <br> QUAI
 
 </div>
 
