@@ -1,6 +1,6 @@
 <div align="center">  
 
-# <img src="app/static/img/quai-logo.png"   width="56px"  height="56px"  style="object-fit:cover"/>QUAI
+# <img src="app/static/img/quai-logo.png"   width="64px"  height="64px"  style="object-fit:cover"/>QUAI
 
 </div>
 
@@ -62,7 +62,7 @@ cd blue-pythons-QUAI/app
 pip install -r requirements.txt
 ```
 
-With dependencies installed, you can run the website with the deployed model. Make sure that `pytorch_model.bin` and `config.json` are in the `app/models` folder.
+With dependencies installed, you can run the website with the deployed model. Make sure that `pytorch_model.bin` and `config.json` are in the `app/models` folder. No pretrained models are available, but you can get those two files by training the `model.ipynb` notebook on the `quai-data` dataset, both in the `training` folder. 
 
 ```
 python -m main
